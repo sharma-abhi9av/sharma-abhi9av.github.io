@@ -29,3 +29,6 @@ This blog documents my practical learning journey through labs, CTFs, and resear
 [[params.socialIcons]]
 name = "github"
 url = "https://github.com/sharma-abhi9av"
+
+[params.assets]
+disableHLJS = false

@@ -1,0 +1,57 @@
+/* ===========================
+   THEME VARIABLES
+   =========================== */
+
+/* Dark Default */
+:root {
+  --primary-color: #4f9cf9;
+}
+
+/* Hacker Green Theme */
+body.hacker {
+  --primary-color: #00ff88;
+  --content-text-color: #00ff88;
+  --secondary-text-color: #00cc66;
+  --link-color: #00ff88;
+  --link-hover-color: #00ffaa;
+  --border-color: #003322;
+  --code-bg: #001a0d;
+  background-color: #000000;
+  color: #00ff88;
+}
+
+/* Light Theme Enhancement */
+body.light {
+  --primary-color: #007acc;
+}
+
+/* Make headings pop in hacker mode */
+body.hacker h1,
+body.hacker h2,
+body.hacker h3 {
+  color: #00ff88;
+}
+
+/* Code blocks in hacker mode */
+body.hacker pre {
+  background-color: #001a0d;
+  border: 1px solid #003322;
+}
+
+/* Hacker Mode Typography */
+body.hacker {
+    font-family: "JetBrains Mono", monospace;
+}
+
+/* Glow effect */
+body.hacker h1,
+body.hacker h2,
+body.hacker h3,
+body.hacker a {
+    text-shadow: 0 0 6px rgba(0,255,140,0.6);
+}
+
+/* Cursor feel */
+body.hacker {
+    caret-color: #00ff88;
+}
