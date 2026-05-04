@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clone Notes
+      - name: Clone Content
         run: |
           rm -rf docs
           git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
@@ -21,9 +21,11 @@ jobs:
         with:
           python-version: 3.x
 
-      - run: pip install mkdocs-material
+      - name: Install Dependencies
+        # We add pymdown-extensions to fix the 'ModuleNotFound' error
+        run: pip install mkdocs-material pymdown-extensions
       
-      - name: Build and Deploy
+      - name: Build and Push
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
