@@ -21,11 +21,24 @@ jobs:
         with:
           python-version: 3.x
 
+      - name: Auto-Generate Python Pages
+        # This script finds every .py file and creates a .md file to display it
+        run: |
+          python3 -c "
+          import os
+          from pathlib import Path
+          for path in Path('docs').rglob('*.py'):
+              if '.git' in path.parts: continue
+              md_path = path.with_suffix('.py.md')
+              code = path.read_text()
+              with open(md_path, 'w') as f:
+                  f.write(f'# {path.name}\n\n```python\n{code}\n```')
+          "
+
       - name: Install Dependencies
-        # We add pymdown-extensions to fix the 'ModuleNotFound' error
         run: pip install mkdocs-material pymdown-extensions
       
-      - name: Build and Push
+      - name: Build and Deploy
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
