@@ -4,70 +4,80 @@
   <meta charset="UTF-8">
   <title>Mikey's Cybersec Journey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <style>
     :root {
-      --base-background-color: #0f172a;
-      --base-font-color: #e2e8f0;
-      --sidebar-background: #1e293b;
-      --theme-color: #2dd4bf;
+      /* High-Contrast Colors */
+      --base-background-color: #0d1117; /* Darker background */
+      --base-font-color: #ffffff; /* Pure white text */
+      --theme-color: #2dd4bf; /* Teal Accent */
     }
-    /* Makes the sidebar look clean */
-    .sidebar-nav ul { padding-left: 15px; }
+    body { background-color: #0d1117; color: #ffffff; font-size: 16px; }
+    /* Fix Sidebar Visibility */
+    .sidebar { background-color: #161b22 !important; border-right: 1px solid #30363d; color: #c9d1d9 !important; }
+    .sidebar-nav li a { color: #8b949e !important; font-weight: 500; }
+    .sidebar-nav li a:hover { color: #2dd4bf !important; }
+    .sidebar-nav li.active > a { color: #ffffff !important; border-left: 2px solid #2dd4bf; }
+    /* Fix Search Highlight Visibility */
+    .search mark { background: #ffeb3b !important; color: #000000 !important; font-weight: bold; padding: 2px 4px; border-radius: 2px; }
+    .search input { background: #0d1117 !important; color: #fff !important; border: 1px solid #30363d !important; }
+    .search .results-panel { background: #161b22 !important; color: #fff !important; border: 1px solid #30363d !important; }
+    .search .matching-post { border-bottom: 1px solid #30363d !important; }
   </style>
 </head>
 <body>
-  <div id="app">Crawling the repository...</div>
+  <div id="app">System Initializing...</div>
   <script>
     window.$docsify = {
       name: 'Cybersec Journey',
       repo: 'https://github.com/sharma-abhi9av/Cybersec-journey',
+      // Pulls content directly from your main repo
       basePath: 'https://raw.githubusercontent.com/sharma-abhi9av/Cybersec-journey/main/',
-      // We disable the manual sidebar and enable our auto-logic
-      loadSidebar: false, 
+      auto2top: true,
+      executeScript: true,
+      loadSidebar: false,
       maxLevel: 4,
-      subMaxLevel: 2,
-      search: 'auto',
-      relativePath: true,
-      // The "Automatic Machine" Logic
+      subMaxLevel: 3,
+      // Fixed Search Logic
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search notes & code...',
+        noData: 'No results found',
+        depth: 6,
+        hideOtherSidebarContent: false
+      },
+      // The "Auto-Crawl" Plugin
       plugins: [
         function(hook, vm) {
           hook.init(function() {
-            // This tells Docsify to wait while we fetch your folder structure
             const repo = 'sharma-abhi9av/Cybersec-journey';
             const url = `https://api.github.com/repos/${repo}/git/trees/main?recursive=1`;
-            
-            fetch(url)
-              .then(response => response.json())
-              .then(data => {
-                const tree = data.tree;
-                let sidebar = '* [Home](README.md)\n';
-                
-                // This builds the menu for every file and folder automatically
-                tree.forEach(item => {
-                  if (item.type === 'blob' && (item.path.endsWith('.md') || item.path.endsWith('.py') || item.path.endsWith('.cpp') || item.path.endsWith('.c'))) {
-                    const pathParts = item.path.split('/');
-                    const indent = '  '.repeat(pathParts.length - 1);
-                    const fileName = pathParts[pathParts.length - 1];
-                    sidebar += `${indent}* [${fileName}](${item.path})\n`;
-                  }
-                });
-                
-                // Inject the generated sidebar into the app
-                window.$docsify.sidebar = sidebar;
+            fetch(url).then(res => res.json()).then(data => {
+              let sidebar = '* [🏠 Home](README.md)\n';
+              data.tree.forEach(item => {
+                const ext = item.path.split('.').pop();
+                const allowed = ['md', 'py', 'c', 'cpp', 'txt', 'js'];
+                if (item.type === 'blob' && allowed.includes(ext) && !item.path.startsWith('.')) {
+                  const parts = item.path.split('/');
+                  const name = parts.pop();
+                  const indent = '  '.repeat(parts.length);
+                  sidebar += `${indent}* [${name}](${item.path})\n`;
+                }
               });
+              window.$docsify.sidebar = sidebar;
+            });
           });
         }
       ]
     }
   </script>
-  
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
 </body>
 </html>
