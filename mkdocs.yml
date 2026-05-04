@@ -1,15 +1,23 @@
-site_name: Mikey's Cybersec Journey
 site_url: https://sharma-abhi9av.github.io/
-use_directory_urls: false # CRITICAL: Prevents FileExistsError crashes
+use_directory_urls: false 
+
 theme:
   name: material
+  
+  logo: assets/mikey.jpeg 
+  favicon: assets/mikey.jpeg 
   palette:
     scheme: slate
     primary: teal
   features:
     - navigation.sections
     - content.code.copy
-    - navigation.top # Adds a "Back to Top" button
+    - navigation.top
+
+
+extra:
+  generator: false 
+
 docs_dir: docs
 markdown_extensions:
   - pymdownx.highlight:
