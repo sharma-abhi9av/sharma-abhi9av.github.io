@@ -1,0 +1,21 @@
+site_name: Mikey's Cybersec Journey
+site_url: https://sharma-abhi9av.github.io/
+use_directory_urls: false # CRITICAL: Prevents FileExistsError crashes
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: teal
+  features:
+    - navigation.sections
+    - content.code.copy
+    - navigation.top # Adds a "Back to Top" button
+docs_dir: docs
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
