@@ -1,0 +1,51 @@
+name: build-and-deploy
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone Content
+        run: |
+          rm -rf docs
+          git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
+
+      - name: Auto-Generate Code Pages
+        # This script creates a .md frame for every code file it finds
+        run: |
+          cat << 'EOF' > generate_pages.py
+          import os
+          from pathlib import Path
+          extensions = ['.py', '.c', '.cpp', '.js', '.txt', '.json', '.sh']
+          for ext in extensions:
+              for path in Path('docs').rglob(f'*{ext}'):
+                  if '.git' in path.parts or path.suffix == '.md': continue
+                  # We name the frame 'filename.ext.md' to avoid collisions
+                  md_path = path.with_name(path.name + '.md')
+                  try:
+                      content = path.read_text(errors='ignore')
+                      lang = ext.replace('.', '')
+                      if lang == 'cpp': lang = 'cpp'
+                      with open(md_path, 'w', encoding='utf-8') as f:
+                          f.write(f'# {path.name}\n\n```{lang}\n{content}\n```')
+                  except Exception as e:
+                      print(f'Error processing {path}: {e}')
+          EOF
+          python3 generate_pages.py
+
+      - name: Install Dependencies
+        # extensions needed to avoid 'ModuleNotFound'
+        run: pip install mkdocs-material pymdown-extensions
+      
+      - name: Build and Deploy
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          mkdocs gh-deploy --force --clean
