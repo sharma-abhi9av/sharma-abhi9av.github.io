@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
 
-      - name: Clone Content
-        
-        run: git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
+      - name: Clone Notes
+        run: |
+          rm -rf docs
+          git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
       - uses: actions/setup-python@v5
         with:
@@ -24,9 +23,8 @@ jobs:
 
       - run: pip install mkdocs-material
       
-      - name: Build and Push
+      - name: Build and Deploy
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
-          
-          mkdocs gh-deploy --force --clean --remote-name https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          mkdocs gh-deploy --force --clean
