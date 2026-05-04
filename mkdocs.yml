@@ -1,0 +1,17 @@
+site_name: Mikey's Cybersec Journey
+site_url: https://sharma-abhi9av.github.io/
+theme:
+  name: material
+  palette:
+    scheme: slate 
+    primary: teal
+  features:
+    - navigation.sections
+    - content.code.copy
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - arithmatex # This handle LaTeX Math
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
