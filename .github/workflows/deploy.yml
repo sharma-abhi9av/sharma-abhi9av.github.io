@@ -3,17 +3,20 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # This adds a "Run" button so you can trigger it manually
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Checks out this repo 
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
 
-      - name: Clone Content Repo
-        run: |
-          
-          git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
+      - name: Clone Content
+        
+        run: git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
       - uses: actions/setup-python@v5
         with:
@@ -21,6 +24,9 @@ jobs:
 
       - run: pip install mkdocs-material
       
-      - name: Build and Deploy
+      - name: Build and Push
         run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
           
+          mkdocs gh-deploy --force --clean --remote-name https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
