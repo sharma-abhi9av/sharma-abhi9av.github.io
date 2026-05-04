@@ -17,6 +17,53 @@ jobs:
           rm -rf docs
           git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
+      - name: Auto-Generate All Code Pages
+        # This one script handles EVERY file type 
+        run: |
+          python3 -c "
+          import os
+          from pathlib import Path
+          # Add any extension you want to this list:
+          extensions = ['.py', '.c', '.cpp', '.js', '.txt']
+          for ext in extensions:
+              for path in Path('docs').rglob(f'*{ext}'):
+                  if '.git' in path.parts: continue
+                  # We add '.md' to the end to make it a page
+                  md_path = path.with_name(path.name + '.md')
+                  content = path.read_text(errors='ignore')
+                  # Map the extension to the right code-block highlighter
+                  lang = ext.replace('.', '')
+                  if lang == 'cpp': lang = 'cpp'
+                  with open(md_path, 'w') as f:
+                      f.write(f'# {path.name}\n\n```{lang}\n{content}\n```')
+          "
+
+      - name: Install Dependencies
+        run: pip install mkdocs-material pymdown-extensions
+      
+      - name: Build and Deploy
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          mkdocs gh-deploy --force --cleanname: build-and-deploy
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone Content
+        run: |
+          rm -rf docs
+          git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
+
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
