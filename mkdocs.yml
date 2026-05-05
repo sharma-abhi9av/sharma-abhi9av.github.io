@@ -8,7 +8,7 @@ theme:
     logo: material/github 
   favicon: assets/mikey.jpeg
   palette:  
-    - scheme: default
+    - scheme: black
       primary: white       
       accent: indigo      
       toggle:
