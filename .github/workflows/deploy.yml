@@ -59,9 +59,9 @@ jobs:
                           f.write(f'# {clean_title}\n\n')
                           
                           if description:
-                              f.write(f'### 📝 The Challenge\n{description}\n\n')
+                              f.write(f'### The Challenge\n{description}\n\n')
                               f.write('---\n\n') 
-                              f.write('### 💻 My Solution\n')
+                              f.write('### Solution\n')
                           
                           f.write(f'```{lang}\n{code}\n```')
                   except Exception as e:
