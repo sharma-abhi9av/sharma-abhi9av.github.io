@@ -8,8 +8,18 @@ theme:
     logo: material/github 
   favicon: assets/mikey.jpeg
   palette:
-    scheme: slate
-    primary: black
+    - scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
   features:
     - navigation.sections
     - content.code.copy
