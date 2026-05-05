@@ -9,7 +9,7 @@ theme:
   favicon: assets/mikey.jpeg
   palette:
     scheme: slate
-    primary: teal
+    primary: black
   features:
     - navigation.sections
     - content.code.copy
