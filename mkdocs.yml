@@ -4,9 +4,9 @@ use_directory_urls: false
 
 theme:
   name: material
-  
-  logo: material/github 
-  favicon: material/github 
+  icon:
+    logo: material/github 
+  favicon: assets/mikey.jpeg
   palette:
     scheme: slate
     primary: teal
