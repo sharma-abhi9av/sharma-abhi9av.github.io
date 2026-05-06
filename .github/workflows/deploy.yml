@@ -18,7 +18,7 @@ jobs:
           git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
       - name: Auto-Generate Code Pages
-        # This script parses comments/docstrings to separate "Challenge" from "Solution"
+        
         run: |
           cat << 'EOF' > generate_pages.py
           import os
@@ -28,7 +28,6 @@ jobs:
           extensions = ['.py', '.c', '.cpp', '.js', '.txt', '.sh']
           for ext in extensions:
               for path in Path('docs').rglob(f'*{ext}'):
-                  # Skip git folders and existing markdown files
                   if '.git' in path.parts or path.suffix == '.md': continue
                   
                   md_path = path.with_name(path.name + '.md')
@@ -38,7 +37,7 @@ jobs:
                       description = ""
                       code = content
 
-                      # 1. Parse Python Docstrings (""" ... """) or (''' ... ''')
+                      # 1. Parse Python Docstrings (""" ... """)
                       if ext == '.py':
                           match = re.match(r'^("""|\'\'\')(.*?)\1(.*?)$', content, re.DOTALL)
                           if match:
@@ -54,14 +53,17 @@ jobs:
 
                       # 3. Create the Markdown file
                       with open(md_path, 'w', encoding='utf-8') as f:
-                          # Clean title (remove extension)
+                          # Clean title (no extension)
                           clean_title = path.name.replace('.py', '').replace('.cpp', '').replace('.c', '')
                           f.write(f'# {clean_title}\n\n')
                           
                           if description:
-                              f.write(f'### The Challenge\n{description}\n\n')
+                              f.write(f'### Challenge\n{description}\n\n')
                               f.write('---\n\n') 
                               f.write('### Solution\n')
+                          else:
+                              # Fallback for files without descriptions
+                              f.write(f'*Automated archive for `{path.name}`.*\n\n')
                           
                           f.write(f'```{lang}\n{code}\n```')
                   except Exception as e:
