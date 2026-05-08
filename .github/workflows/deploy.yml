@@ -28,42 +28,29 @@ jobs:
           for ext in extensions:
               for path in Path('docs').rglob(f'*{ext}'):
                   if '.git' in path.parts or path.suffix == '.md': continue
-                  
                   md_path = path.with_name(path.name + '.md')
                   try:
                       content = path.read_text(errors='ignore').strip()
                       lang = ext.replace('.', '')
                       description = ""
                       code = content
-
-                      # 1. Parse Python Docstrings (""" ... """)
                       if ext == '.py':
                           match = re.match(r'^("""|\'\'\')(.*?)\1(.*?)$', content, re.DOTALL)
                           if match:
                               description = match.group(2).strip()
                               code = match.group(3).strip()
-
-                      # 2. Parse C/C++/JS Block Comments (/* ... */)
                       elif ext in ['.c', '.cpp', '.js']:
                           match = re.match(r'^/\*(.*?)\*/(.*?)$', content, re.DOTALL)
                           if match:
                               description = match.group(1).strip()
                               code = match.group(2).strip()
-
-                      # 3. Create the Markdown file
                       with open(md_path, 'w', encoding='utf-8') as f:
-                          # Clean title (no extension)
                           clean_title = path.name.replace('.py', '').replace('.cpp', '').replace('.c', '')
                           f.write(f'# {clean_title}\n\n')
-                          
                           if description:
-                              f.write(f'### Challenge\n{description}\n\n')
-                              f.write('---\n\n') 
-                              f.write('### Solution\n')
+                              f.write(f'### 📝 The Challenge\n{description}\n\n---\n\n### 💻 My Solution\n')
                           else:
-                              # Fallback for files without descriptions
                               f.write(f'*Automated archive for `{path.name}`.*\n\n')
-                          
                           f.write(f'```{lang}\n{code}\n```')
                   except Exception as e:
                       print(f'Error processing {path}: {e}')
@@ -71,7 +58,7 @@ jobs:
           python3 generate_pages.py
 
       - name: Install Dependencies
-        # Added mkdocs-awesome-pages-plugin to the install list
+        # Essential: installs the theme AND the sorting plugin
         run: pip install mkdocs-material pymdown-extensions mkdocs-awesome-pages-plugin
       
       - name: Build and Deploy
