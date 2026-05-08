@@ -1,23 +1,22 @@
 site_name: "Abhinav Sharma"
 site_url: https://sharma-abhi9av.github.io/
-use_directory_urls: false 
+use_directory_urls: false
 
 theme:
   name: material
   icon:
-    logo: material/github 
+    logo: material/github
   favicon: assets/mikey.jpeg
-  palette:  
+  palette:
     - scheme: default
-      primary: indigo       
-      accent: indigo      
+      primary: white
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to Dark Mode
-  
     - scheme: slate
-      primary: black         
-      accent: indigo       
+      primary: black
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to Light Mode
@@ -29,11 +28,10 @@ theme:
 
 plugins:
   - search
-  - awesome-pages:
-      sort: natural
+  - awesome-pages
 
 extra:
-  generator: false 
+  generator: false
 
 docs_dir: docs
 markdown_extensions:
