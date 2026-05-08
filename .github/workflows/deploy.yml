@@ -18,7 +18,6 @@ jobs:
           git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
       - name: Auto-Generate Code Pages
-        
         run: |
           cat << 'EOF' > generate_pages.py
           import os
@@ -72,7 +71,8 @@ jobs:
           python3 generate_pages.py
 
       - name: Install Dependencies
-        run: pip install mkdocs-material pymdown-extensions
+        # Added mkdocs-awesome-pages-plugin to the install list
+        run: pip install mkdocs-material pymdown-extensions mkdocs-awesome-pages-plugin
       
       - name: Build and Deploy
         run: |
