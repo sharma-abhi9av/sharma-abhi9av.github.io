@@ -48,17 +48,22 @@ jobs:
                           clean_title = path.name.replace('.py', '').replace('.cpp', '').replace('.c', '')
                           f.write(f'# {clean_title}\n\n')
                           if description:
-                              f.write(f'### 📝 The Challenge\n{description}\n\n---\n\n### 💻 My Solution\n')
+                              f.write(f'### Challenge\n{description}\n\n---\n\n### Solution\n')
                           else:
                               f.write(f'*Automated archive for `{path.name}`.*\n\n')
                           f.write(f'```{lang}\n{code}\n```')
                   except Exception as e:
                       print(f'Error processing {path}: {e}')
+
+          # Create .pages files to force natural sorting in Leetcode and Exercism
+          for folder in Path('docs').rglob('*'):
+              if folder.is_dir() and ('Leetcode' in str(folder) or 'Exercism' in str(folder)):
+                  with open(folder / '.pages', 'w') as f:
+                      f.write("sort: natural\n")
           EOF
           python3 generate_pages.py
 
       - name: Install Dependencies
-        # Essential: installs the theme AND the sorting plugin
         run: pip install mkdocs-material pymdown-extensions mkdocs-awesome-pages-plugin
       
       - name: Build and Deploy
