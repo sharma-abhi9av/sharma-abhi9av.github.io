@@ -1,55 +1,48 @@
 site_name: "Abhinav Sharma"
 site_url: https://sharma-abhi9av.github.io/
-use_directory_urls: false 
+
+use_directory_urls: false
 
 theme:
   name: material
   icon:
-    logo: material/github 
+    logo: material/github
   favicon: assets/mikey.jpeg
-  palette:  
+  palette:
     - scheme: default
-      primary: indigo       
-      accent: indigo      
-      toggle:
-        icon: material/brightness-7
-        name: Switch to Dark Mode
-    - scheme: slate
-      primary: black         
-      accent: indigo       
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-4
+        name: Switch to Dark Mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
         name: Switch to Light Mode
   features:
     - navigation.sections
-    - content.code.copy
     - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
 
-# Search is built-in, awesome-pages handles the 1, 9, 14 sorting
 plugins:
   - search
   - awesome-pages
 
-
-nav:
-  - "Home": index.md
-  - "About Me": About.md
-  - "Hack The Box": 
-      - Machines:
-          - Writeups: "Hack the Box/Machines/writeups/"
-  - "Cloud Security":
-      - AWS: "Cloud/AWS/"
-  - "Programming":
-      - LeetCode: "Programming/Python/Leetcode/Problems/"
-      - Exercism: "Programming/Python/Exercism/"
-
 extra:
-  generator: false 
+  generator: false
 
 docs_dir: docs
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
