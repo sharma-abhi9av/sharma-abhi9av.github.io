@@ -18,7 +18,6 @@ jobs:
           git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
       - name: Auto-Generate Code Pages
-        
         run: |
           cat << 'EOF' > generate_pages.py
           import os
@@ -26,10 +25,12 @@ jobs:
           from pathlib import Path
 
           extensions = ['.py', '.c', '.cpp', '.js', '.txt', '.sh']
+
           for ext in extensions:
               for path in Path('docs').rglob(f'*{ext}'):
-                  if '.git' in path.parts or path.suffix == '.md': continue
-                  
+                  if '.git' in path.parts or path.suffix == '.md':
+                      continue
+
                   md_path = path.with_name(path.name + '.md')
                   try:
                       content = path.read_text(errors='ignore').strip()
@@ -37,14 +38,12 @@ jobs:
                       description = ""
                       code = content
 
-                      # Parse Python Docstrings
                       if ext == '.py':
                           match = re.match(r'^("""|\'\'\')(.*?)\1(.*?)$', content, re.DOTALL)
                           if match:
                               description = match.group(2).strip()
                               code = match.group(3).strip()
 
-                      # Parse C/C++/JS Comments
                       elif ext in ['.c', '.cpp', '.js']:
                           match = re.match(r'^/\*(.*?)\*/(.*?)$', content, re.DOTALL)
                           if match:
@@ -52,26 +51,24 @@ jobs:
                               code = match.group(2).strip()
 
                       with open(md_path, 'w', encoding='utf-8') as f:
-                          clean_title = path.name.replace('.py', '').replace('.cpp', '').replace('.c', '')
+                          clean_title = path.stem
                           f.write(f'# {clean_title}\n\n')
+
                           if description:
-                              f.write(f'### Challenge\n{description}\n\n---\n\n### Solution\n')
-                          else:
-                              f.write(f'*Automated archive for `{path.name}`.*\n\n')
-                          f.write(f'```{lang}\n{code}\n```')
+                              f.write(f'## Overview\n{description}\n\n')
+                              f.write('---\n\n')
+                              f.write('## Code\n')
+                          
+                          f.write(f'```{lang}\n{code}\n```\n')
+
                   except Exception as e:
                       print(f'Error processing {path}: {e}')
-
-          # CRITICAL: Create .pages file in EVERY subfolder to ensure natural sorting (1, 9, 14...)
-          for root, dirs, files in os.walk('docs'):
-              with open(os.path.join(root, '.pages'), 'w') as f:
-                  f.write("sort: natural\n")
           EOF
           python3 generate_pages.py
 
       - name: Install Dependencies
         run: pip install mkdocs-material pymdown-extensions mkdocs-awesome-pages-plugin
-      
+
       - name: Build and Deploy
         run: |
           git config user.name github-actions[bot]
