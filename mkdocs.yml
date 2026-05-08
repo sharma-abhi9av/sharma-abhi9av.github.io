@@ -16,7 +16,7 @@ theme:
         name: Switch to Dark Mode
   
     - scheme: slate
-      primary: grey        
+      primary: grey         
       accent: indigo       
       toggle:
         icon: material/brightness-4
@@ -26,6 +26,11 @@ theme:
     - content.code.copy
     - navigation.top
 
+
+plugins:
+  - search
+  - awesome-pages:
+      sort: natural
 
 extra:
   generator: false 
