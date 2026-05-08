@@ -24,24 +24,24 @@ theme:
     - navigation.sections
     - content.code.copy
     - navigation.top
-    - navigation.tracking 
 
+# Search is built-in, awesome-pages handles the 1, 9, 14 sorting
 plugins:
   - search
-  - awesome-pages 
+  - awesome-pages
 
 
 nav:
   - "Home": index.md
-  - "About Me": about.md
+  - "About Me": About.md
   - "Hack The Box": 
       - Machines:
-          - Writeups: docs/Hack the Box/Machines/writeups/...
+          - Writeups: "Hack the Box/Machines/writeups/"
   - "Cloud Security":
-      - AWS: docs/Cloud/AWS/...
+      - AWS: "Cloud/AWS/"
   - "Programming":
-      - LeetCode: docs/Programming/Python/Leetcode/Problems/...
-      - Exercism: docs/Programming/Python/Exercism/...
+      - LeetCode: "Programming/Python/Leetcode/Problems/"
+      - Exercism: "Programming/Python/Exercism/"
 
 extra:
   generator: false 
