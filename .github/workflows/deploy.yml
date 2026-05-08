@@ -18,6 +18,7 @@ jobs:
           git clone https://github.com/sharma-abhi9av/Cybersec-journey.git docs
 
       - name: Auto-Generate Code Pages
+        
         run: |
           cat << 'EOF' > generate_pages.py
           import os
@@ -28,22 +29,28 @@ jobs:
           for ext in extensions:
               for path in Path('docs').rglob(f'*{ext}'):
                   if '.git' in path.parts or path.suffix == '.md': continue
+                  
                   md_path = path.with_name(path.name + '.md')
                   try:
                       content = path.read_text(errors='ignore').strip()
                       lang = ext.replace('.', '')
                       description = ""
                       code = content
+
+                      # Parse Python Docstrings
                       if ext == '.py':
                           match = re.match(r'^("""|\'\'\')(.*?)\1(.*?)$', content, re.DOTALL)
                           if match:
                               description = match.group(2).strip()
                               code = match.group(3).strip()
+
+                      # Parse C/C++/JS Comments
                       elif ext in ['.c', '.cpp', '.js']:
                           match = re.match(r'^/\*(.*?)\*/(.*?)$', content, re.DOTALL)
                           if match:
                               description = match.group(1).strip()
                               code = match.group(2).strip()
+
                       with open(md_path, 'w', encoding='utf-8') as f:
                           clean_title = path.name.replace('.py', '').replace('.cpp', '').replace('.c', '')
                           f.write(f'# {clean_title}\n\n')
@@ -55,11 +62,10 @@ jobs:
                   except Exception as e:
                       print(f'Error processing {path}: {e}')
 
-          # Create .pages files to force natural sorting in Leetcode and Exercism
-          for folder in Path('docs').rglob('*'):
-              if folder.is_dir() and ('Leetcode' in str(folder) or 'Exercism' in str(folder)):
-                  with open(folder / '.pages', 'w') as f:
-                      f.write("sort: natural\n")
+          # CRITICAL: Create .pages file in EVERY subfolder to ensure natural sorting (1, 9, 14...)
+          for root, dirs, files in os.walk('docs'):
+              with open(os.path.join(root, '.pages'), 'w') as f:
+                  f.write("sort: natural\n")
           EOF
           python3 generate_pages.py
 
