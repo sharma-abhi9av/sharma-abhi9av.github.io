@@ -46,3 +46,15 @@ markdown_extensions:
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+nav:
+  - "Home": index.md
+  - "About Me": About.md
+  - "HTB Stats": "htb/htb_stats.html"
+  - "Hack The Box":
+      - Machines:
+          - Writeups: "Hack the Box/Machines/writeups/"
+  - "Cloud Security":
+      - AWS: "Cloud/AWS/"
+  - "Programming":
+      - LeetCode: "Programming/Python/Leetcode/Problems/"
+      - Exercism: "Programming/Python/Exercism/"
