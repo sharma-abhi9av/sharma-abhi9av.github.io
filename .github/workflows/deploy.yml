@@ -66,4 +66,4 @@ jobs:
           mkdir -p "site/Hack the Box"
           cp "docs/Hack the Box/htb_stats.html" "site/Hack the Box/htb_stats.html"
           cp "docs/data.json" "site/data.json" 2>/dev/null || true
-          mkdocs gh-deploy --force --dirty
+          mkdocs gh-deploy --force --no-rebuild
