@@ -63,7 +63,6 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
           mkdocs build --clean
-          mkdir -p "site/Hack the Box"
           cp "docs/Hack the Box/htb_stats.html" "site/Hack the Box/htb_stats.html"
           cp "docs/data.json" "site/data.json" 2>/dev/null || true
-          mkdocs gh-deploy --force --no-rebuild
+          ghp-import -n -p -f site
