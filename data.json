@@ -1,0 +1,289 @@
+{
+  "generated_at": "2026-07-22T01:59:59Z",
+  "experience": {
+    "rank": "Professional",
+    "level": 57,
+    "xp": 42061,
+    "xp_next_level": 0,
+    "streak": 3
+  },
+  "profile": {
+    "user_id": 2142022,
+    "username": "0xMikey",
+    "user_owns": 41,
+    "system_owns": 39,
+    "points": 401,
+    "user_bloods": 0,
+    "system_bloods": 0
+  },
+  "challenges": {
+    "total_solved": 23,
+    "categories": [
+      {
+        "name": "Reversing",
+        "solved": 3,
+        "total": 101,
+        "completion": 3
+      },
+      {
+        "name": "Crypto",
+        "solved": 1,
+        "total": 131,
+        "completion": 1
+      },
+      {
+        "name": "Web",
+        "solved": 7,
+        "total": 170,
+        "completion": 4
+      },
+      {
+        "name": "OSINT",
+        "solved": 6,
+        "total": 11,
+        "completion": 55
+      },
+      {
+        "name": "Hardware",
+        "solved": 1,
+        "total": 42,
+        "completion": 2
+      },
+      {
+        "name": "Coding",
+        "solved": 3,
+        "total": 17,
+        "completion": 18
+      },
+      {
+        "name": "Quantum",
+        "solved": 2,
+        "total": 6,
+        "completion": 33
+      }
+    ]
+  },
+  "attack_paths": {
+    "total_solved": 0,
+    "paths": []
+  },
+  "activity": [],
+  "derived": {
+    "user_owns": 0,
+    "system_owns": 0,
+    "challenge_solves": 0,
+    "unique_machines": [],
+    "points_by_month": {}
+  },
+  "team": {
+    "id": 7247,
+    "name": "VXON",
+    "points": 2150,
+    "root_owns": 315,
+    "user_owns": 330,
+    "challenge_owns": 334,
+    "ranking": 35,
+    "member_count": 22,
+    "members": [
+      {
+        "name": "SOOBIKv2",
+        "rank": "Elite Hacker",
+        "points": 1403,
+        "root_owns": 55,
+        "user_owns": 55,
+        "country": "FR",
+        "is_captain": false
+      },
+      {
+        "name": "knockingd00r",
+        "rank": "Pro Hacker",
+        "points": 856,
+        "root_owns": 69,
+        "user_owns": 76,
+        "country": "MA",
+        "is_captain": false
+      },
+      {
+        "name": "CyberKareem",
+        "rank": "Pro Hacker",
+        "points": 729,
+        "root_owns": 185,
+        "user_owns": 198,
+        "country": "IQ",
+        "is_captain": false
+      },
+      {
+        "name": "atoontoto",
+        "rank": "Pro Hacker",
+        "points": 503,
+        "root_owns": 84,
+        "user_owns": 84,
+        "country": "IQ",
+        "is_captain": false
+      },
+      {
+        "name": "ANameNotMine",
+        "rank": "Pro Hacker",
+        "points": 414,
+        "root_owns": 124,
+        "user_owns": 135,
+        "country": "HR",
+        "is_captain": false
+      },
+      {
+        "name": "0xMikey",
+        "rank": "Pro Hacker",
+        "points": 401,
+        "root_owns": 39,
+        "user_owns": 41,
+        "country": "IN",
+        "is_captain": true
+      },
+      {
+        "name": "w3nch",
+        "rank": "Pro Hacker",
+        "points": 400,
+        "root_owns": 51,
+        "user_owns": 54,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "Papalo007",
+        "rank": "Pro Hacker",
+        "points": 208,
+        "root_owns": 73,
+        "user_owns": 73,
+        "country": "GR",
+        "is_captain": false
+      },
+      {
+        "name": "Marclos15",
+        "rank": "Hacker",
+        "points": 152,
+        "root_owns": 46,
+        "user_owns": 51,
+        "country": "ES",
+        "is_captain": false
+      },
+      {
+        "name": "jbrgn",
+        "rank": "Pro Hacker",
+        "points": 91,
+        "root_owns": 85,
+        "user_owns": 86,
+        "country": "GB",
+        "is_captain": false
+      },
+      {
+        "name": "6cloudguy",
+        "rank": "Hacker",
+        "points": 54,
+        "root_owns": 28,
+        "user_owns": 28,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "kincurio",
+        "rank": "Hacker",
+        "points": 50,
+        "root_owns": 10,
+        "user_owns": 12,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "b3st1m0s",
+        "rank": "Hacker",
+        "points": 29,
+        "root_owns": 36,
+        "user_owns": 38,
+        "country": "GR",
+        "is_captain": false
+      },
+      {
+        "name": "rootrose",
+        "rank": "Pro Hacker",
+        "points": 27,
+        "root_owns": 57,
+        "user_owns": 69,
+        "country": "GR",
+        "is_captain": false
+      },
+      {
+        "name": "c3n7",
+        "rank": "Script Kiddie",
+        "points": 26,
+        "root_owns": 13,
+        "user_owns": 14,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "lacmac",
+        "rank": "Hacker",
+        "points": 24,
+        "root_owns": 48,
+        "user_owns": 53,
+        "country": null,
+        "is_captain": false
+      },
+      {
+        "name": "RedSecXX",
+        "rank": "Hacker",
+        "points": 9,
+        "root_owns": 22,
+        "user_owns": 36,
+        "country": "US",
+        "is_captain": false
+      },
+      {
+        "name": "hackoverback",
+        "rank": "Script Kiddie",
+        "points": 4,
+        "root_owns": 4,
+        "user_owns": 4,
+        "country": "EG",
+        "is_captain": false
+      },
+      {
+        "name": "Thennavan",
+        "rank": "Hacker",
+        "points": 4,
+        "root_owns": 36,
+        "user_owns": 41,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "XoXoRiTi",
+        "rank": "Hacker",
+        "points": 3,
+        "root_owns": 15,
+        "user_owns": 17,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "Valkyri3x",
+        "rank": "Script Kiddie",
+        "points": 0,
+        "root_owns": 2,
+        "user_owns": 2,
+        "country": "IN",
+        "is_captain": false
+      },
+      {
+        "name": "cheerybliss",
+        "rank": "Hacker",
+        "points": 0,
+        "root_owns": 7,
+        "user_owns": 8,
+        "country": "JP",
+        "is_captain": false
+      }
+    ],
+    "logo": "https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/teams/cf5ff72ca35f112b361de3e312c088f4_thumb.jpg"
+  }
+}
